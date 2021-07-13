@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_12_184344) do
+ActiveRecord::Schema.define(version: 2021_07_13_013330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,11 +18,20 @@ ActiveRecord::Schema.define(version: 2021_07_12_184344) do
   create_table "groceries", force: :cascade do |t|
     t.bigint "author_id", null: false
     t.string "name"
-    t.decimal "amount", precision: 5, scale: 2
+    t.decimal "amount", precision: 7, scale: 2
     t.string "unit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_id"], name: "index_groceries_on_author_id", unique: true
+    t.index ["author_id"], name: "index_groceries_on_author_id"
+  end
+
+  create_table "groceries_groups", id: false, force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "grocery_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grocery_id"], name: "index_groceries_groups_on_grocery_id"
+    t.index ["group_id"], name: "index_groceries_groups_on_group_id"
   end
 
   create_table "groups", force: :cascade do |t|
