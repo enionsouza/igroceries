@@ -9,6 +9,8 @@ class Group < ApplicationRecord
   validates :user_id, :name, presence: true
   validate :icon_is_image?
 
+  private
+
   def icon_is_image?
     return true if icon.nil?
 

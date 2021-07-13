@@ -1,17 +1,21 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   def new
-  @user = User.new
+    @user = User.new
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
-      flash[:success] = "User successfully created"
-      redirect_to @user
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: 'User successfully created'
     else
-      flash[:error] = "Something went wrong"
-      render 'new'
+      render 'new', alert: 'Something went wrong'
     end
   end
-  
+
+  # private
+
+  def user_params
+    params.require(:user).permit(:name)
+  end
 end
