@@ -1,33 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<h1> <em>Groceries</em> </h1>
+<%= link_to 'New Grocery', new_grocery_path, class: 'btn btn-secondary text-white mb-3 d-block mx-auto' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Author</th>
-      <th>Name</th>
-      <th>Amount</th>
-      <th>Unit</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="card bg-secondary">
+  <h5 class="card-header fw-bold"> <%= @title %> <em> (total: <%= @total %>) </em> </h5>
+  <% @groceries.each do |grocery| %>
+    <div class="card-body border-bottom border-dark p-1">
+      <div class="d-flex">
+        <% if grocery.groups.any? %>
+          <% if grocery.groups.first.icon %>
+            <%= image_tag(grocery.groups.first.icon, size: 60) %>
+          <% else %>
+            <p><%= grocery.groups.first.name %></p>
+          <% end %>
+        <% elsif @title == 'My Groceries' %>
+          <p>No group</p>
+        <% end %>
+        <a class="ms-3 text-decoration-none text-white" href=<%= grocery_path(grocery) %> >
+          <h5 class="card-title"><%= grocery.name %></h5>
+          <p class="card-text"><%= "#{grocery.amount}#{grocery.unit}" %></p>
+        </a>
+      </div>
+      <time class="d-block text-end">
+        <em><small><%= grocery.created_at.strftime('%a %d %b %Y') %></small></em>
+      </time>
+    </div>
+  <% end %>
+</div>
 
-  <tbody>
-    <% @groceries.each do |grocery| %>
-      <tr>
-        <td><%= grocery.author_id %></td>
-        <td><%= grocery.name %></td>
-        <td><%= grocery.amount %></td>
-        <td><%= grocery.unit %></td>
-        <td><%= link_to 'Show', grocery %></td>
-        <td><%= link_to 'Edit', edit_grocery_path(grocery) %></td>
-        <td><%= link_to 'Destroy', grocery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Grocery', new_grocery_path, class: 'btn btn-secondary text-white' %>

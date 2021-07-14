@@ -34,10 +34,22 @@ $primary: #3778c2;
 $secondary: #5fb523;
 $dark: #434b54;
 
+$list-group-bg: $primary;
+$list-group-hover-bg: $dark;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.logo {
+  width: 1.5em;
+  margin-right: 0.25em;
+}
+
+.word-spacing-zero {
+  word-spacing: -0.25em;
 }
 
 @import "~bootstrap/scss/bootstrap";

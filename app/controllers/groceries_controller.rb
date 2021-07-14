@@ -3,7 +3,20 @@ class GroceriesController < ApplicationController
 
   # GET /groceries or /groceries.json
   def index
-    @groceries = Grocery.all
+    case params[:mode]
+    when 'my-groceries'
+      @groceries = Grocery.where(author_id: current_user.id).order(created_at: :desc)
+      @total = @groceries.count
+      @title = 'My Groceries'
+    when 'my-external-groceries'
+      @groceries = Grocery.where(author_id: current_user.id).order(created_at: :desc).select do |grocery|
+        grocery.groups.none?
+      end
+      @total = @groceries.count
+      @title = 'My External Groceries'
+    else
+      render :status => 404
+    end
   end
 
   # GET /groceries/1 or /groceries/1.json

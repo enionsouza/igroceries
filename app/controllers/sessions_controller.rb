@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
 
   def create
     if User.exists?(name: user_params[:name])
-      session[:user_id] = User.find_by(name: user_params[:name])
+      session[:user_id] = User.find_by(name: user_params[:name]).id
       redirect_to root_path
     else
-      render login_path, alert: 'User doesn\'t exist'
+      render 'sessions/new', alert: 'User doesn\'t exist'
     end
   end
 
