@@ -1,5 +1,5 @@
 class GroceriesController < ApplicationController
-  before_action :set_grocery, only: %i[ show edit update destroy ]
+  before_action :set_grocery, only: %i[show edit update destroy]
 
   # GET /groceries or /groceries.json
   def index
@@ -15,13 +15,12 @@ class GroceriesController < ApplicationController
       @total = @groceries.count
       @title = 'My External Groceries'
     else
-      render :status => 404
+      render status: 404
     end
   end
 
   # GET /groceries/1 or /groceries/1.json
-  def show
-  end
+  def show; end
 
   # GET /groceries/new
   def new
@@ -29,8 +28,7 @@ class GroceriesController < ApplicationController
   end
 
   # GET /groceries/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /groceries or /groceries.json
   def create
@@ -38,7 +36,7 @@ class GroceriesController < ApplicationController
 
     respond_to do |format|
       if @grocery.save
-        format.html { redirect_to @grocery, notice: "Grocery was successfully created." }
+        format.html { redirect_to @grocery, notice: 'Grocery was successfully created.' }
         format.json { render :show, status: :created, location: @grocery }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +49,7 @@ class GroceriesController < ApplicationController
   def update
     respond_to do |format|
       if @grocery.update(grocery_params)
-        format.html { redirect_to @grocery, notice: "Grocery was successfully updated." }
+        format.html { redirect_to @grocery, notice: 'Grocery was successfully updated.' }
         format.json { render :show, status: :ok, location: @grocery }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,19 +62,20 @@ class GroceriesController < ApplicationController
   def destroy
     @grocery.destroy
     respond_to do |format|
-      format.html { redirect_to groceries_url, notice: "Grocery was successfully destroyed." }
+      format.html { redirect_to groceries_url, notice: 'Grocery was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_grocery
-      @grocery = Grocery.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def grocery_params
-      params.require(:grocery).permit(:author_id, :name, :amount, :unit)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_grocery
+    @grocery = Grocery.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def grocery_params
+    params.require(:grocery).permit(:author_id, :name, :amount, :unit)
+  end
 end

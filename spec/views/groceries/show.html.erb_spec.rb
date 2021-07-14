@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "groceries/show", type: :view do
+RSpec.describe 'groceries/show', type: :view do
   before(:each) do
     @grocery = assign(:grocery, Grocery.create!(
-      author: nil,
-      name: "Name",
-      amount: "9.99",
-      unit: "Unit"
-    ))
+                                  author: nil,
+                                  name: 'Name',
+                                  amount: '9.99',
+                                  unit: 'Unit'
+                                ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(//)
     expect(rendered).to match(/Name/)
