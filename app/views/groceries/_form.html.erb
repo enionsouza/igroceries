@@ -1,4 +1,4 @@
-<%= form_with(model: grocery) do |form| %>
+<%= form_with(model: grocery, url: :back) do |form| %>
   <% if grocery.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(grocery.errors.count, "error") %> prohibited this grocery from being saved:</h2>

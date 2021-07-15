@@ -1,0 +1,41 @@
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white fs-1 word-spacing-zero" href="<%= root_path %>">
+        <!--
+          <img src="igroceries-logo.png" alt="" class="logo">
+        -->
+          <span class="fw-bold">i</span> <em>Groceries</em> 
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="<%= root_path %>">Home</a>
+            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="<%= logout_path %>" data-confirm="Are you sure?" data-method="delete">Logout</a>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="<%= login_path %>">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="<%= new_user_path %>">Signup</a>
+              </li>
+            <% end %>
+          </ul>
+
+          <div class="d-flex">
+            <% if user_signed_in? %>
+              <p class="text-white">Hello, <%= current_user.name %>!</p>
+            <% else %>
+              <p class="text-white">Please, login or signup to start!</p>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </nav>
