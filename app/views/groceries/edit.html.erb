@@ -1,6 +1,3 @@
 <h1>Editing Grocery</h1>
 
-<%= render 'form', grocery: @grocery %>
-
-<%= link_to 'Show', @grocery %> |
-<%= link_to 'Back', :back %>
+<%= render 'form', grocery: @grocery, mode: @grocery.id %>

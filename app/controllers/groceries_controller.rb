@@ -1,5 +1,6 @@
 class GroceriesController < ApplicationController
-  before_action :set_grocery, only: %i[show edit update destroy]
+  before_action :set_grocery, only: %i[show edit destroy]
+  before_action :authorize
 
   # GET /groceries or /groceries.json
   def index
@@ -15,27 +16,34 @@ class GroceriesController < ApplicationController
       @total = @groceries.count
       @title = 'My External Groceries'
     else
-      render status: 404
+      redirect_to '/404'
     end
   end
 
   # GET /groceries/1 or /groceries/1.json
-  def show; end
+  def show
+    @grocery_groups = @grocery.groups
+  end
 
   # GET /groceries/new
   def new
     @grocery = Grocery.new
+    @groups = Group.all
   end
 
   # GET /groceries/1/edit
-  def edit; end
+  def edit
+    @groups = Group.all
+  end
 
   # POST /groceries or /groceries.json
   def create
     @grocery = Grocery.new(grocery_params)
+    @grocery.author_id = current_user.id
 
     respond_to do |format|
       if @grocery.save
+        @grocery.groups = Group.where(id: params[:grocery][:group_ids])
         format.html { redirect_to @grocery, notice: 'Grocery was successfully created.' }
         format.json { render :show, status: :created, location: @grocery }
       else
@@ -47,8 +55,10 @@ class GroceriesController < ApplicationController
 
   # PATCH/PUT /groceries/1 or /groceries/1.json
   def update
+    @grocery = Grocery.find(params[:mode])
     respond_to do |format|
       if @grocery.update(grocery_params)
+        @grocery.groups = Group.where(id: params[:grocery][:group_ids])
         format.html { redirect_to @grocery, notice: 'Grocery was successfully updated.' }
         format.json { render :show, status: :ok, location: @grocery }
       else
@@ -60,9 +70,11 @@ class GroceriesController < ApplicationController
 
   # DELETE /groceries/1 or /groceries/1.json
   def destroy
+    redirect_to '/404' unless @grocery.author == current_user
+
     @grocery.destroy
     respond_to do |format|
-      format.html { redirect_to groceries_url, notice: 'Grocery was successfully destroyed.' }
+      format.html { redirect_to groceries_path('my-groceries'), notice: 'Grocery was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -76,6 +88,6 @@ class GroceriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def grocery_params
-    params.require(:grocery).permit(:author_id, :name, :amount, :unit)
+    params.require(:grocery).permit(:name, :amount, :unit, :group_ids)
   end
 end

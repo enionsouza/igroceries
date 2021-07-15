@@ -10,12 +10,13 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'groceries/index/:mode', to: 'groceries#index', as: 'groceries'
   post 'groceries/index/:mode', to: 'groceries#create'
+  patch 'groceries/index/:mode', to: 'groceries#update'
   # get 'groceries/new', to: 'groceries#new', as: 'new_grocery'
   # get 'groceries/:id', to: 'groceries#show', as: 'grocery'
   # get 'groceries/:id/edit', to: 'groceries#edit', as: 'edit_grocery'
   # patch 'groceries/:id', to: 'groceries#update'
   # delete 'groceries/:id', to: 'groceries#delete'
-  resources :groceries, except: %i[index create]
+  resources :groceries, except: %i[index create update]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

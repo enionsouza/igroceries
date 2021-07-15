@@ -1,4 +1,4 @@
-<%= form_with(model: grocery, url: :back) do |form| %>
+<%= form_with(model: grocery, url: groceries_path(mode)) do |form| %>
   <% if grocery.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(grocery.errors.count, "error") %> prohibited this grocery from being saved:</h2>
@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :author_id %>
-    <%= form.text_field :author_id %>
+  <div class="mb-3">
+    <%= form.label :name, class:'form-label' %>
+    <%= form.text_field :name, class:'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :amount, class:'form-label' %>
+    <%= form.number_field :amount, in: 0.01..99999.99, step: 0.01, class:'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
+  <div class="mb-3">
+    <%= form.label :unit, class:'form-label' %>
+    <%= form.text_field :unit, class:'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :unit %>
-    <%= form.text_field :unit %>
-  </div>
+  <h5 class="text-white">Groups:</h5>
+  <%= form.collection_check_boxes(:group_ids, Group.all, :id, :name) do |b|
+    # b.label(class: "form-check-label") { b.check_box(class: "form-check-input") }
+    content_tag(:div, b.check_box(class: "form-check-input bg-secondary") + b.label(class: "form-check-label"), class: 'mb-3 form-check')
+  end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit 'Submit', class: 'btn btn-secondary text-white' %>
+    <%= link_to 'Back', :back, class: 'btn btn-dark text-white'  %>
   </div>
 <% end %>
