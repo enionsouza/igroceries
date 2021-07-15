@@ -7,7 +7,7 @@
       <div class="d-flex">
         <% if grocery.groups.any? %>
           <% if grocery.groups.first.icon %>
-            <%= image_tag(grocery.groups.first.icon, size: 60) %>
+            <%= image_tag(grocery.groups.first.icon, size: 100, class: 'img-thumbnail') %>
           <% else %>
             <p><%= grocery.groups.first.name %></p>
           <% end %>

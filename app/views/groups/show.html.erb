@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <%# link_to 'New Grocery', new_grocery_path, class: 'btn btn-secondary text-white mb-3 d-block mx-auto' %>
 
 <div class="card bg-secondary">
@@ -8,7 +6,7 @@
     <div class="card-body border-bottom border-dark p-1">
       <div class="d-flex">
         <% if grocery.groups.first.icon %>
-          <%= image_tag(grocery.groups.first.icon, size: 60) %>
+          <%= image_tag(grocery.groups.first.icon, size: 100, class: 'img-thumbnail') %>
         <% else %>
           <p><%= grocery.groups.first.name %></p>
         <% end %>
@@ -25,4 +23,5 @@
   <% end %>
 </div>
 
-<%= link_to  "Back", :back, class: 'btn btn-secondary mt-3 text-white' %>
+<%= link_to  "Edit this Group", edit_group_path, class: 'btn btn-secondary mt-3 text-white' %>
+<%# link_to  "Back", :back, class: 'btn btn-dark mt-3 text-white' %>

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <%= link_to 'New Group', new_group_path, class: 'btn btn-secondary text-white mb-3 d-block mx-auto' %>
 
 <div class="card bg-primary">
@@ -9,7 +7,7 @@
     <a class="ms-3 text-decoration-none text-white" href=<%= group_path(group) %> >
         <div class="d-flex">
           <% unless group.icon.nil? %>
-            <%= image_tag(group.icon, size: 100) %>
+            <%= image_tag(group.icon, size: 100, class: 'img-thumbnail') %>
           <% else %>
             <p class="col-4 py-3 bg-secondary text-center"> No image assigned </p>
           <% end %>
