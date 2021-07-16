@@ -6,7 +6,8 @@ class Group < ApplicationRecord
 
   has_and_belongs_to_many :groceries
 
-  validates :user_id, :name, presence: true
+  validates :user_id, presence: true
+  validates :name, uniqueness: true, presence: true
   validate :icon_is_image?
 
   private
