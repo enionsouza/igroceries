@@ -7,7 +7,8 @@ RSpec.describe GroceriesController, type: :routing do
     end
 
     it 'routes to #index(my-external-groceries)' do
-      expect(get: '/groceries/index/my-external-groceries').to route_to('groceries#index', mode: 'my-external-groceries')
+      expect(get: '/groceries/index/my-external-groceries').to route_to('groceries#index',
+                                                                        mode: 'my-external-groceries')
     end
 
     it 'routes to #new' do

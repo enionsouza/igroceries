@@ -98,7 +98,7 @@ on \'All my external groceries\' Page' do
     click_link 'All my groceries'
     click_link 'Grocery 1'
     click_link 'Edit'
-    expect(page).to have_content('Editing Grocery') 
+    expect(page).to have_content('Editing Grocery')
   end
 
   it 'allows user to update a grocery' do
@@ -110,7 +110,7 @@ on \'All my external groceries\' Page' do
     click_link 'Edit'
     page.check('Group 1')
     click_button 'Submit'
-    expect(page).to have_content('Grocery was successfully updated') 
+    expect(page).to have_content('Grocery was successfully updated')
   end
 
   it 'rejects the update of a grocery with errors' do

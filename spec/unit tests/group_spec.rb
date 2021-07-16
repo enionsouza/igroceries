@@ -106,7 +106,7 @@ RSpec.describe Group, type: :model do
       user1 = User.create!(name: 'John Doe')
       user1.groups.create(name: 'Beverages')
       user1.groups.create(name: 'Dairy')
-      expect(user1.groups.count).to eq(2) 
+      expect(user1.groups.count).to eq(2)
     end
   end
 
