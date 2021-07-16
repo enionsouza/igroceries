@@ -3,7 +3,7 @@
 <div class="card bg-secondary">
   <h5 class="card-header fw-bold"> <%= @title %> <em> (total: <%= @total %>) </em> </h5>
   <% @groceries.each do |grocery| %>
-    <div class="card-body border-bottom border-dark p-1">
+    <div class="card-body border-bottom border-dark p-1 position-relative">
       <div class="d-flex">
         <% if grocery.groups.any? %>
           <% if grocery.groups.first.icon %>
@@ -22,6 +22,7 @@
       <time class="d-block text-end">
         <em><small><%= grocery.created_at.strftime('%a %d %b %Y') %></small></em>
       </time>
+      <%= link_to '', grocery_path(grocery), method: :delete, class: "btn-close position-absolute top-0 end-0", data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
 </div>
