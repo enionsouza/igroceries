@@ -10,7 +10,7 @@
 
 <p>
   <strong>Amount:</strong>
-  <%= "#{@grocery.amount} #{@grocery.unit}" %>
+  <%= @grocery.unit.length > 2 ? pluralize(@grocery.amount, @grocery.unit) : "#{@grocery.amount} #{@grocery.unit}" %>
 </p>
 
 <% if @grocery_groups.any? %>

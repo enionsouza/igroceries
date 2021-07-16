@@ -28,7 +28,6 @@
 
   <h5 class="text-white">Groups:</h5>
   <%= form.collection_check_boxes(:group_ids, Group.all, :id, :name) do |b|
-    # b.label(class: "form-check-label") { b.check_box(class: "form-check-input") }
     content_tag(:div, b.check_box(class: "form-check-input bg-secondary") + b.label(class: "form-check-label"), class: 'mb-3 form-check')
   end %>
 
