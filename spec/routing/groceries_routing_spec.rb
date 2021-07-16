@@ -2,8 +2,12 @@ require 'rails_helper'
 
 RSpec.describe GroceriesController, type: :routing do
   describe 'routing' do
-    it 'routes to #index' do
-      expect(get: '/groceries').to route_to('groceries#index')
+    it 'routes to #index(my-groceries)' do
+      expect(get: '/groceries/index/my-groceries').to route_to('groceries#index', mode: 'my-groceries')
+    end
+
+    it 'routes to #index(my-external-groceries)' do
+      expect(get: '/groceries/index/my-external-groceries').to route_to('groceries#index', mode: 'my-external-groceries')
     end
 
     it 'routes to #new' do
@@ -19,15 +23,11 @@ RSpec.describe GroceriesController, type: :routing do
     end
 
     it 'routes to #create' do
-      expect(post: '/groceries').to route_to('groceries#create')
-    end
-
-    it 'routes to #update via PUT' do
-      expect(put: '/groceries/1').to route_to('groceries#update', id: '1')
+      expect(post: '/groceries/index/1').to route_to('groceries#create', mode: '1')
     end
 
     it 'routes to #update via PATCH' do
-      expect(patch: '/groceries/1').to route_to('groceries#update', id: '1')
+      expect(patch: '/groceries/index/1').to route_to('groceries#update', mode: '1')
     end
 
     it 'routes to #destroy' do

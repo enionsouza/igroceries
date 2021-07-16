@@ -2,7 +2,7 @@ class GroceriesController < ApplicationController
   before_action :set_grocery, only: %i[show edit destroy]
   before_action :authorize
 
-  # GET /groceries or /groceries.json
+  # GET /groceries/index/my-groceries or /groceries/index/my-external-groceries
   def index
     case params[:mode]
     when 'my-groceries'
@@ -36,7 +36,7 @@ class GroceriesController < ApplicationController
     @groups = Group.all
   end
 
-  # POST /groceries or /groceries.json
+  # POST /groceries/index/my-groceries
   def create
     @grocery = Grocery.new(grocery_params)
     @grocery.author_id = current_user.id
@@ -45,25 +45,21 @@ class GroceriesController < ApplicationController
       if @grocery.save
         @grocery.groups = Group.where(id: params[:grocery][:group_ids])
         format.html { redirect_to @grocery, notice: 'Grocery was successfully created.' }
-        format.json { render :show, status: :created, location: @grocery }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @grocery.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /groceries/1 or /groceries/1.json
+  # PATCH/PUT /groceries/index/1
   def update
     @grocery = Grocery.find(params[:mode])
     respond_to do |format|
       if @grocery.update(grocery_params)
         @grocery.groups = Group.where(id: params[:grocery][:group_ids])
         format.html { redirect_to @grocery, notice: 'Grocery was successfully updated.' }
-        format.json { render :show, status: :ok, location: @grocery }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @grocery.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -75,7 +71,6 @@ class GroceriesController < ApplicationController
     @grocery.destroy
     respond_to do |format|
       format.html { redirect_to groceries_path('my-groceries'), notice: 'Grocery was successfully deleted.' }
-      format.json { head :no_content }
     end
   end
 
