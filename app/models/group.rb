@@ -13,7 +13,7 @@ class Group < ApplicationRecord
   private
 
   def icon_is_image?
-    return true if icon.nil?
+    return true if icon.nil? || icon.empty?
 
     url = URI.parse(icon)
     http = Net::HTTP.new(url.host, url.port)
