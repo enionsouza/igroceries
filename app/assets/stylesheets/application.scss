@@ -11,33 +11,3 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
-@font-face {
-  font-family: "Proxima Nova";
-  font-style: normal;
-  font-weight: bold;
-  src: url("fonts/proxima-nova-bold.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "Proxima Nova";
-  font-style: normal;
-  font-weight: normal;
-  src: url("fonts/proxima-nova-light.otf") format("opentype");
-}
-
-$font-family-sans-serif: "Proxima Nova", system-ui, -apple-system, "Segoe UI",
-  roboto, "Helvetica Neue", arial, "Noto Sans", "Liberation Sans", sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
-$primary: #3778c2;
-$secondary: #5fb523;
-$dark: #434b54;
-
-@import "bootstrap";
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
