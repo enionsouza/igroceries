@@ -2,7 +2,7 @@
 
 # iGroceries (RoR Module Capstone Project)
 
-> This project was built for the [Microverse](https://www.microverse.org/) Ruby on Rails Module's Capstone Project and it is based on a mobile app for grouping payments by goal with the user's family/friends. The design followed the requirements provided by Microverse, but the content was personalized, for grouping the groceries a family or a collection of friends usually share. The idea was to provide the means of sharing a list of goods that matter to all users, as it is also possible for a user to create groceries out of any group, so that particular grocery wouldn't be shared amongst the other users.
+> This project was built for the [Microverse](https://www.microverse.org/) Ruby on Rails Module's Capstone Project and it is based on a mobile app for grouping payments by goal with the user's family/friends. The design followed the requirements provided by Microverse, but the content was personalized, for grouping the groceries a family or a collection of friends usually share. The idea was to create an MVP (Minimum Viable Product) for sharing a list of goods that matter to all users, as it is also possible for a user to create groceries out of any group, so that particular grocery wouldn't be shared amongst the other users.
 
 ![screenshot](./docs/screenshot1.png)
 ![screenshot](./docs/screenshot2.png)
