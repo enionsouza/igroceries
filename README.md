@@ -62,6 +62,8 @@ bundle install
 rails webpacker:install
 ```
 
+_Important Remark: In this steop, if you're requested to solve a conflict about `config/webpacker.yml`, please choose **not to overwrite** this file! Kindly type **n** and hit `<ENTER>`, on your keyboard._
+
 ### Install
 
 - To migrate the databases needed for this project, run
