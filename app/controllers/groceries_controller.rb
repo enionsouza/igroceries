@@ -6,13 +6,12 @@ class GroceriesController < ApplicationController
   def index
     case params[:mode]
     when 'my-groceries'
-      @groceries = Grocery.where(author_id: current_user.id).order(created_at: :desc)
+      @groceries = Grocery.where(author_id: current_user.id).order(created_at: :desc).includes(:groups)
       @total = @groceries.count
       @title = 'My Groceries'
+      @my_groceries = true
     when 'my-external-groceries'
-      @groceries = Grocery.where(author_id: current_user.id).order(created_at: :desc).select do |grocery|
-        grocery.groups.none?
-      end
+      @groceries = Grocery.where(author_id: current_user.id).includes(:groups).select { |grocery| grocery.groups.empty? }
       @total = @groceries.count
       @title = 'My External Groceries'
     else

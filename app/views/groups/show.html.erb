@@ -12,12 +12,12 @@
         <% end %>
         <a class="ms-3 text-decoration-none text-white" href=<%= grocery_path(grocery) %> >
           <h5 class="card-title"><%= grocery.name %></h5>
-          <p class="card-text"><%= grocery.unit.length > 2 ? pluralize(grocery.amount, grocery.unit) : "#{grocery.amount} #{grocery.unit}" %></p>
+          <p class="card-text"><%= amount_with_unit(grocery) %></p>
           <p class="card-text">Author: <%= grocery.author.name %></p>
         </a>
       </div>
       <time class="d-block text-end">
-        <em><small><%= grocery.created_at.strftime('%a %d %b %Y') %></small></em>
+        <em><small><%= creation_date(grocery) %></small></em>
       </time>
     </div>
   <% end %>
