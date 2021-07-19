@@ -28,6 +28,7 @@ class GroceriesController < ApplicationController
   # GET /groceries/new
   def new
     @grocery = Grocery.new
+    @grocery.private = true
     @groups = Group.all
   end
 
@@ -83,6 +84,6 @@ class GroceriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def grocery_params
-    params.require(:grocery).permit(:name, :amount, :unit, :group_ids)
+    params.require(:grocery).permit(:name, :amount, :unit, :private, :group_ids)
   end
 end

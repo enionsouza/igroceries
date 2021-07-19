@@ -6,4 +6,7 @@ class Grocery < ApplicationRecord
 
   validates :name, presence: true
   validates :amount, presence: true, numericality: { greater_than: 0 }
+
+  scope :particular, -> { where(private: true) }
+  scope :common, -> { where(private: [false, nil]) }
 end

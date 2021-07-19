@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
-    @groceries = @group.groceries
+    @groceries = @group.groceries.common
     @total = @groceries.count
     @title = "Groceries from Group '#{@group.name.capitalize}'"
   end

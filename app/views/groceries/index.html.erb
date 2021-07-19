@@ -15,7 +15,16 @@
           <p>No group</p>
         <% end %>
         <a class="ms-3 text-decoration-none text-white" href=<%= grocery_path(grocery) %> >
-          <h5 class="card-title"><%= grocery.name %></h5>
+          <h5 class="card-title">
+            <%= grocery.name %>
+              <% if grocery.author == current_user %>
+                <% if grocery.private %>
+                  <span class="badge bg-success">Private</span>
+                <% else %>
+                  <span class="badge bg-warning text-dark">Public</span>
+                <% end %>
+              <% end %>
+          </h5>
           <p class="card-text"><%= grocery.unit.length > 2 ? pluralize(grocery.amount, grocery.unit) : "#{grocery.amount} #{grocery.unit}" %></p>
         </a>
       </div>

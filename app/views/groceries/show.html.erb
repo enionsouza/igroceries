@@ -6,6 +6,13 @@
 <p>
   <strong>Name:</strong>
   <%= @grocery.name %>
+  <% if @grocery.author == current_user %>
+    <% if @grocery.private %>
+      <span class="badge bg-success">Private</span>
+    <% else %>
+      <span class="badge bg-warning text-dark">Public</span>
+    <% end %>
+  <% end %>
 </p>
 
 <p>
