@@ -11,9 +11,9 @@ class GroceriesController < ApplicationController
       @title = 'My Groceries'
       @my_groceries = true
     when 'my-external-groceries'
-      @groceries = Grocery.where(author_id: current_user.id).includes(:groups).select do |grocery|
-        grocery.groups.empty?
-      end
+      @groceries =
+        Grocery.where(author_id: current_user.id).order(created_at: :desc) -
+        Grocery.joins(:groups).distinct.where(author_id: current_user.id).order(created_at: :desc)
       @total = @groceries.count
       @title = 'My External Groceries'
     else
