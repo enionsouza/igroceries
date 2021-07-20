@@ -1,0 +1,43 @@
+<%= form_with(model: grocery, url: groceries_path(mode)) do |form| %>
+  <% if grocery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(grocery.errors.count, "error") %> prohibited this grocery from being saved:</h2>
+
+      <ul>
+        <% grocery.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class:'form-label' %>
+    <%= form.text_field :name, class:'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :amount, class:'form-label' %>
+    <%= form.number_field :amount, in: 0.01..99999.99, step: 0.01, class:'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :unit, class:'form-label' %>
+    <%= form.text_field :unit, class:'form-control' %>
+  </div>
+
+  <div class="mb-3 form-check">
+    <%= form.check_box :private, class: 'form-check-input bg-secondary' %>
+    <%= form.label :private, 'keep it private', class: 'form-check-label' %>
+  </div>
+
+  <h5 class="text-white">Groups:</h5>
+  <%= form.collection_check_boxes(:group_ids, Group.all, :id, :name) do |b|
+    content_tag(:div, b.check_box(class: 'form-check-input bg-secondary') + b.label(class: 'form-check-label'), class: 'mb-3 form-check')
+  end %>
+
+  <div class="mb-3">
+    <%= form.submit 'Submit', class: 'btn btn-secondary text-white' %>
+    <%= link_to 'Back', :back, class: 'btn btn-dark text-white'  %>
+  </div>
+<% end %>

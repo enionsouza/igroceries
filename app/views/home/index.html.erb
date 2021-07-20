@@ -1,0 +1,7 @@
+<h1>Hello, <%= current_user.name%>! </h1>
+
+<div class="list-group">
+  <%= link_to  "All my groceries", groceries_path('my-groceries'), class:'list-group-item list-group-item-action text-white' %>
+  <%= link_to  "All my external groceries", groceries_path('my-external-groceries'), class:'list-group-item list-group-item-action text-white' %>
+  <%= link_to  "All groups", groups_path, class:'list-group-item list-group-item-action text-white' %>
+</div>

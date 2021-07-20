@@ -1,0 +1,27 @@
+<%# link_to 'New Grocery', new_grocery_path, class: 'btn btn-secondary text-white mb-3 d-block mx-auto' %>
+
+<div class="card bg-secondary">
+  <h5 class="card-header fw-bold"> <%= @title %> <em> (total: <%= @total %>) </em> </h5>
+  <% @groceries.each do |grocery| %>
+    <div class="card-body border-bottom border-dark p-1">
+      <div class="d-flex">
+        <% if grocery.groups.first.icon %>
+          <%= image_tag(grocery.groups.first.icon, size: 100, class: 'img-thumbnail') %>
+        <% else %>
+          <p><%= grocery.groups.first.name %></p>
+        <% end %>
+        <a class="ms-3 text-decoration-none text-white" href=<%= grocery_path(grocery) %> >
+          <h5 class="card-title"><%= grocery.name %></h5>
+          <p class="card-text"><%= amount_with_unit(grocery) %></p>
+          <p class="card-text">Author: <%= grocery.author.name %></p>
+        </a>
+      </div>
+      <time class="d-block text-end">
+        <em><small><%= creation_date(grocery) %></small></em>
+      </time>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to  "Edit this Group", edit_group_path, class: 'btn btn-secondary mt-3 text-white' %>
+<%# link_to  "Back", :back, class: 'btn btn-dark mt-3 text-white' %>

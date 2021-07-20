@@ -1,0 +1,29 @@
+<%= form_with(model: group) do |form| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+        <% group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class:'form-label' %>
+    <%= form.text_field :name, class:'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :icon, class:'form-label' %>
+    <%= form.url_field :icon, class:'form-control' %>
+    <div class="form-text text-white fst-italic">Enter a valid URL for an image to represent this group.</div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Submit', class: 'btn btn-secondary text-white' %>
+    <%= link_to 'Back', :back, class: 'btn btn-dark text-white' %>
+  </div>
+<% end %>

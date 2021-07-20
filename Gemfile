@@ -23,9 +23,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Bootstrap as a CSS framework
-gem 'bootstrap', '~> 5.0.1'
-gem 'jquery-rails'
-gem 'sprockets-rails', require: 'sprockets/railtie'
+# gem 'bootstrap', '~> 5.0.1'
+# gem 'jquery-rails'
+# gem 'sprockets-rails', require: 'sprockets/railtie'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -65,4 +65,5 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'bullet', group: 'development'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

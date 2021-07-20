@@ -1,0 +1,37 @@
+<p>
+  <strong>Author:</strong>
+  <%= @grocery.author.name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @grocery.name %>
+  <% if @grocery.author == current_user %>
+    <% if @grocery.private %>
+      <span class="badge bg-success">Private</span>
+    <% else %>
+      <span class="badge bg-warning text-dark">Public</span>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= amount_with_unit(@grocery) %>
+</p>
+
+<% if @grocery_groups.any? %>
+  <h5>This grocery belongs to:</h5>
+  <ul>
+    <% @grocery_groups.each do |group| %>
+      <li> <%= group.name %> </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h5>External grocery</h5>
+<% end %>
+
+<% if @grocery.author == current_user %>
+  <%= link_to 'Edit', edit_grocery_path(@grocery), class: "btn btn-secondary text-white" %>
+  <%= link_to 'Delete', grocery_path(@grocery), method: :delete, class: "btn btn-secondary text-white", data: { confirm: 'Are you sure?' } %>
+<% end %>

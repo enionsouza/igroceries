@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Igroceries</title>
+    <title>iGroceries</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-primary text-white">
+
+    <%= render 'shared/nav'%>
+
+    <div class="container-fluid p-3 mb-2">
+      <% if notice.present? %>
+        <div class="alert alert-success" role="alert">
+          <p> <%= notice %> </p>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="alert alert-danger" role="alert">
+          <p> <%= alert %> </p>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

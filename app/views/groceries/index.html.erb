@@ -1,0 +1,37 @@
+<%= link_to 'New Grocery', new_grocery_path, class: 'btn btn-secondary text-white mb-3 d-block mx-auto' %>
+
+<div class="card bg-secondary">
+  <h5 class="card-header fw-bold"> <%= @title %> <em> (total: <%= @total %>) </em> </h5>
+  <% @groceries.each do |grocery| %>
+    <div class="card-body border-bottom border-dark p-1 position-relative">
+      <div class="d-flex">
+        <% if @my_groceries %>
+          <% if grocery.groups.any? %>
+            <% if grocery.groups.first.icon %>
+              <%= image_tag(grocery.groups.first.icon, size: 100, class: 'img-thumbnail') %>
+            <% else %>
+              <p><%= grocery.groups.first.name %></p>
+            <% end %>
+          <% else %>
+            <p>No group</p>
+          <% end %>
+        <% end %>
+        <a class="ms-3 text-decoration-none text-white" href=<%= grocery_path(grocery) %> >
+          <h5 class="card-title">
+            <%= grocery.name %>
+              <% if grocery.private %>
+                <span class="badge bg-success">Private</span>
+              <% else %>
+                <span class="badge bg-warning text-dark">Public</span>
+              <% end %>
+          </h5>
+          <p class="card-text"><%= amount_with_unit(grocery) %></p>
+        </a>
+      </div>
+      <time class="d-block text-end">
+        <em><small><%= creation_date(grocery) %></small></em>
+      </time>
+      <%= link_to '', grocery_path(grocery), method: :delete, class: "btn-close position-absolute top-0 end-0", data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+</div>

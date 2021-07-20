@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Proxima Nova";
+  font-style: normal;
+  font-weight: bold;
+  src: url("fonts/proxima-nova-bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/proxima-nova-light.otf") format("opentype");
+}
+
+$font-family-sans-serif: "Proxima Nova", system-ui, -apple-system, "Segoe UI",
+  roboto, "Helvetica Neue", arial, "Noto Sans", "Liberation Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+$primary: #3778c2;
+$secondary: #5fb523;
+$dark: #434b54;
+
+$list-group-bg: $primary;
+$list-group-hover-bg: $dark;
+$btn-close-width: 0.75em;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo {
+  width: 1.5em;
+  margin-right: 0.25em;
+}
+
+.word-spacing-zero {
+  word-spacing: -0.25em;
+}
+
+@import "~bootstrap/scss/bootstrap";
