@@ -28,7 +28,7 @@ RSpec.describe 'Extra feature (private groceries)', type: :system do
     click_link 'All my groceries'
     expect(page).to have_content('Grocery 1 Private')
   end
-  
+
   it 'displays the correct badge for public groceries' do
     visit root_path
     fill_in 'Name', with: 'User001'
@@ -70,7 +70,7 @@ RSpec.describe 'Extra feature (private groceries)', type: :system do
     expect(page).to have_content('Groceries from Group \'Group 1\' (total: 0)')
   end
 
-    it 'displays public groceries on \'All groups\' Page' do
+  it 'displays public groceries on \'All groups\' Page' do
     visit root_path
     fill_in 'Name', with: 'User001'
     click_button 'Login'
