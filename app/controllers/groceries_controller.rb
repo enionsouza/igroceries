@@ -13,7 +13,7 @@ class GroceriesController < ApplicationController
     when 'my-external-groceries'
       @groceries =
         Grocery.where(author_id: current_user.id).order(created_at: :desc) -
-        Grocery.joins(:groups).distinct.where(author_id: current_user.id).order(created_at: :desc)
+        Grocery.joins(:groups).where(author_id: current_user.id)
       @total = @groceries.count
       @title = 'My External Groceries'
     else
