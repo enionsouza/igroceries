@@ -7,7 +7,7 @@
 ![screenshot](./docs/screenshot1.png)
 ![screenshot](./docs/screenshot2.png)
 
-This project followed the Test Driven Development (TDD) Principle, and 93 Tests were prepared in Rails: _44 Unit Tests_ for models associations and validations and _49 Integrations Tests_ for authentication and events managment, using Capybara [capybara 3.26 (Ruby Gem)] to control Selenium on Chrome Webdriver [selenium-webdriver 3.142.7 (Ruby Gem)] and RSpec [rspec-rails 5.0 (Ruby Gem)].
+This project followed the Test Driven Development (TDD) Principle, and 100 Tests were prepared in Rails: _44 Unit Tests_ for models associations and validations and _56 Integrations Tests_ for authentication and events managment, using Capybara [capybara 3.26 (Ruby Gem)] to control Selenium on Chrome Webdriver [selenium-webdriver 3.142.7 (Ruby Gem)] and RSpec [rspec-rails 5.0 (Ruby Gem)].
 
 **Important**: As a project's requirement, the user logs in to the app, only by typing the username (a proper authenticated login is _not_ a requirement)
 
@@ -112,6 +112,7 @@ You can stop your local server pressing `<ctrl> + c` on your keyboard.
           - name:string
           - amount:decimal(5,2)
           - unit:string
+          - private:boolean
 
   ![screenshot](./docs/iGroceries-ERD.png)
 
